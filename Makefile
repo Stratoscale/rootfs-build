@@ -8,7 +8,7 @@ submit: $(ROOTFS)
 clean:
 	sudo rm -fr build
 
-$(ROOTFS):
+$(ROOTFS): Makefile solvent.manifest
 	echo "Bringing source"
 	-sudo mv $(ROOTFS)/ $(ROOTFS).tmp/
 	-mkdir $(@D)
