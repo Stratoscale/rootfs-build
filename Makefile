@@ -20,7 +20,7 @@ $(ROOTFS): Makefile solvent.manifest
 	mkdir $(ROOTFS).tmp/tmp/install-laptop
 	cp -a ../inaugurator ../install-laptop ../osmosis ../rackattack-api ../rackattack-virtual ../solvent ../upseto ../yumcache $(ROOTFS).tmp/tmp/install-laptop
 	find $(ROOTFS).tmp/tmp/install-laptop -name "*.dep" | xargs rm -fr
-	sudo chroot $(ROOTFS).tmp sh -c "cd /tmp/install-laptop/install-laptop && make install_here"
+	sudo ./chroot.sh $(ROOTFS).tmp sh -c "cd /tmp/install-laptop/install-laptop && make install_here"
 	rm -fr $(ROOTFS).tmp/tmp/install_laptop
 	echo "Done"
 	sudo mv $(ROOTFS).tmp $(ROOTFS)
