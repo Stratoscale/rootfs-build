@@ -22,5 +22,6 @@ $(ROOTFS): Makefile solvent.manifest
 	find $(ROOTFS).tmp/tmp/install-laptop -name "*.dep" | xargs rm -fr
 	sudo ./chroot.sh $(ROOTFS).tmp sh -c "cd /tmp/install-laptop/install-laptop && make install_here"
 	rm -fr $(ROOTFS).tmp/tmp/install_laptop
+	sudo rm -fr $(ROOTFS).tmp/tmp/* $(ROOTFS).tmp/var/tmp/*
 	echo "Done"
 	sudo mv $(ROOTFS).tmp $(ROOTFS)
