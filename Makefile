@@ -20,10 +20,8 @@ $(ROOTFS): Makefile solvent.manifest
 	-mkdir $(@D)
 	sudo solvent bring --repositoryBasename=rootfs-build-nostrato --product=rootfs --destination=$(ROOTFS).tmp
 	echo "Installing strato packages"
-	mkdir $(ROOTFS).tmp/tmp/install-laptop
-	cp -a ../inaugurator ../install-laptop ../osmosis ../rackattack-api ../rackattack-virtual ../solvent ../upseto ../yumcache $(ROOTFS).tmp/tmp/install-laptop
-	find $(ROOTFS).tmp/tmp/install-laptop -name "*.dep" | xargs rm -fr
-	sudo ./chroot.sh $(ROOTFS).tmp sh -c "cd /tmp/install-laptop/install-laptop && make install_here"
+	sudo tar -xf ../install-laptop/build/installer/install-laptop.tgz -C $(ROOTFS).tmp/tmp
+	sudo ./chroot.sh $(ROOTFS).tmp sh -c "cd /tmp/install-laptop && ./install.sh"
 	sudo rm -fr $(ROOTFS).tmp/tmp/* $(ROOTFS).tmp/var/tmp/*
 	echo "Done"
 	sudo mv $(ROOTFS).tmp $(ROOTFS)
